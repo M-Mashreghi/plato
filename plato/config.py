@@ -309,7 +309,9 @@ class Config:
 
         if hasattr(Config().trainer, "use_tensorflow"):
             import tensorflow as tf
-
+            config = tf.compat.v1.ConfigProto()
+            config.gpu_options.allow_growth = True
+            session = tf.compat.v1.Session(config=config)
             gpus = tf.config.experimental.list_physical_devices("GPU")
             return len(gpus)
 
@@ -334,7 +336,9 @@ class Config:
             pass
         elif hasattr(Config().trainer, "use_tensorflow"):
             import tensorflow as tf
-
+            config = tf.compat.v1.ConfigProto()
+            config.gpu_options.allow_growth = True
+            session = tf.compat.v1.Session(config=config)
             gpus = tf.config.experimental.list_physical_devices("GPU")
             if len(gpus) > 0:
                 device = "GPU"
