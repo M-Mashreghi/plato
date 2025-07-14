@@ -21,11 +21,23 @@ class Model(nn.Module):
         super().__init__()
         self.cut_layer = cut_layer
 
-        # We pad the image to get an input size of 32x32 as for the
-        # original network in the LeCun paper
+        # # We pad the image to get an input size of 32x32 as for the
+        # # original network in the LeCun paper
+        # self.conv1 = nn.Conv2d(
+        #     in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2, bias=True
+        # )
         self.conv1 = nn.Conv2d(
-            in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2, bias=True
+            in_channels=3,          #  <-- was 1
+            out_channels=6,
+            kernel_size=5,
+            stride=1,
+            padding=0,              # 0 keeps the original LeNet geometry – see below
+            bias=True
         )
+
+
+
+
         self.relu1 = nn.ReLU()
         self.pool1 = nn.MaxPool2d(kernel_size=2, stride=2)
         self.conv2 = nn.Conv2d(
