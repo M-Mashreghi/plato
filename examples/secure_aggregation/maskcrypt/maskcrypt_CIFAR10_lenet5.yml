@@ -42,7 +42,7 @@ trainer:
   target_accuracy: 0.99
 
   # The machine learning model
-  model_name: lenet5
+  model_name: resnet_18
 
   # Number of epoches for local training in each communication round
   epochs: 20
